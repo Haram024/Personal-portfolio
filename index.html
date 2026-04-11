@@ -586,22 +586,32 @@
             navBg.style.pointerEvents = 'none';
         });
 
-        // Smooth Scroll for Nav Links
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const target = document.querySelector(link.getAttribute('href'));
-                if (target) {
-                    window.scrollTo({
-                        top: target.offsetTop - 50,
-                        behavior: 'smooth'
-                    });
-                }
-                navMenu.classList.remove('active');
-                navBg.style.opacity = '0';
-                navBg.style.pointerEvents = 'none';
-            });
-        });
+       // Smooth Scroll for Nav Links (Fixed)
+document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', function(e) {
+
+        const targetId = this.getAttribute('href');
+
+        if (targetId.startsWith("#")) {
+            e.preventDefault();
+
+            const targetSection = document.querySelector(targetId);
+
+            if (targetSection) {
+                targetSection.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+            }
+        }
+
+        // Close sidebar after clicking
+        navMenu.classList.remove('active');
+        navBg.style.opacity = '0';
+        navBg.style.pointerEvents = 'none';
+    });
+});
+        
     </script>
 </body>
 </html>
