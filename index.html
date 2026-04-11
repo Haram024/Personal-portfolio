@@ -113,38 +113,50 @@
         .nav-links a:hover {
             color: #f1c40f;
         }
-        /* Dropdown container */
+/* ===== Dropdown Inside Sidebar ===== */
+
 .dropdown {
-    position: relative;
-    display: inline-block;
+    width: 100%;
 }
 
-/* Dropdown hidden by default */
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #111;
-    min-width: 200px;
-    border-radius: 8px;
-    overflow: hidden;
-}
-
-/* Dropdown links */
-.dropdown-content a {
-    color: white;
-    padding: 10px 15px;
+.dropbtn {
     display: block;
+    width: 100%;
+    margin: 20px 0;
     text-decoration: none;
+    color: #fff;
+    font-size: 20px;
+    transition: 0.3s;
+    cursor: pointer;
 }
 
-/* Hover effect */
-.dropdown-content a:hover {
-    background-color: #333;
+.dropbtn:hover {
+    color: #f1c40f;
 }
 
-/* Show dropdown on hover */
-.dropdown:hover .dropdown-content {
+.dropdown-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+    padding-left: 15px;
+}
+
+.dropdown-content a {
     display: block;
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 10px 0;
+    transition: 0.3s;
+}
+
+.dropdown-content a:hover {
+    color: #f1c40f;
+}
+
+/* Expand dropdown on hover */
+.dropdown:hover .dropdown-content {
+    max-height: 300px;
 }
 
         /* ===== Sections ===== */
@@ -399,8 +411,8 @@
 
         <!-- Skills with Submenu -->
         <div class="dropdown">
-            <a href="#skills" class="dropbtn">Skills ▾</a>
-            <div class="dropdown-content">
+    <span class="dropbtn">Skills ▾</span>
+    <div class="dropdown-content">
                 <a href="#programming">Programming Languages</a>
                 <a href="#libraries">Libraries</a>
                 <a href="#hardware">Hardware Platforms</a>
