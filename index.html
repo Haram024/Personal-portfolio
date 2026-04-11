@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Archive | Haram Najam Khan</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* ===== Reset ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: #f5f0ff;
+            color: #2e0249;
+            overflow-x: hidden;
+        }
+
+        /* ===== Circular Background Patterns ===== */
+        body::before {
+            content: '';
+            position: fixed;
+            width: 600px;
+            height: 600px;
+            background: rgba(155, 89, 182, 0.15);
+            border-radius: 50%;
+            top: -150px;
+            left: -150px;
+            z-index: -1;
+        }
+        body::after {
+            content: '';
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            background: rgba(241, 196, 15, 0.15);
+            border-radius: 50%;
+            bottom: -100px;
+            right: -100px;
+            z-index: -1;
+        }
+
+        /* ===== Navigation ===== */
+        .nav-bar-bg {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.3);
+            top: 0;
+            left: 0;
+            z-index: 900;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .menu-trigger {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            width: 35px;
+            height: 30px;
+            cursor: pointer;
+            z-index: 1001;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .menu-trigger .line {
+            height: 4px;
+            width: 100%;
+            background: #6a0dad;
+            border-radius: 2px;
+        }
+
+        .nav-overlay {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 300px;
+            height: 100%;
+            background: linear-gradient(180deg, #6a0dad, #9b59b6);
+            z-index: 1000;
+            transition: left 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-left: 20px;
+        }
+
+        .nav-overlay.active {
+            left: 0;
+        }
+
+        .nav-links a {
+            display: block;
+            margin: 20px 0;
+            text-decoration: none;
+            color: #fff;
+            font-size: 20px;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #f1c40f;
+        }
+
+        /* ===== Sections ===== */
+        .section {
+            min-height: 100vh;
+            padding: 120px 50px 50px 50px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .home-content .profile-section {
+            margin-bottom: 20px;
+        }
+
+        .profile-circle {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid #f1c40f;
+            margin-bottom: 20px;
+        }
+
+        .profile-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .user-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            color: #6a0dad;
+            margin-bottom: 5px;
+        }
+
+        .tagline {
+            font-size: 18px;
+            color: #d4af37;
+            margin-bottom: 40px;
+            font-style: italic;
+        }
+
+        .intro-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            color: #6a0dad;
+            margin-bottom: 20px;
+        }
+
+        .intro-text {
+            max-width: 800px;
+            text-align: justify;
+            line-height: 1.7;
+            font-size: 16px;
+        }
+
+        /* Academic Section */
+        .academic-path h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: #6a0dad;
+        }
+
+        .academic-container {
+            background: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .academic-container h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            color: #6a0dad;
+            margin-bottom: 5px;
+        }
+
+        .date-gold {
+            color: #f1c40f;
+            font-weight: 600;
+        }
+
+        .cgpa-badge {
+            display: inline-block;
+            background: #6a0dad;
+            color: #fff;
+            padding: 5px 15px;
+            border-radius: 20px;
+            margin: 10px 0;
+            font-weight: 600;
+        }
+
+        /* Project / Archive Cards */
+        .grid-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .portal-card {
+            background: #fff;
+            width: 250px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .portal-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .card-info {
+            padding: 15px;
+        }
+
+        .card-info h3 {
+            font-family: 'Playfair Display', serif;
+            color: #6a0dad;
+            margin-bottom: 10px;
+        }
+
+        .card-info p {
+            color: #555;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .btn-portal {
+            display: inline-block;
+            padding: 8px 15px;
+            background: #f1c40f;
+            color: #2e0249;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .btn-portal:hover {
+            background: #d4af37;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 50px;
+            background: #6a0dad;
+            color: #fff;
+            text-align: center;
+        }
+
+        .download-btn {
+            background: #f1c40f;
+            color: #2e0249;
+            padding: 12px 25px;
+            font-weight: 600;
+            border-radius: 8px;
+            text-decoration: none;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .contact-links a {
+            color: #d4af37;
+            text-decoration: none;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        @media (max-width: 768px) {
+            .grid-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .menu-trigger {
+                top: 15px;
+                left: 15px;
+            }
+
+            .section {
+                padding: 80px 20px 40px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="nav-bar-bg"></div>
+    <div class="menu-trigger" id="menu-btn">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+    </div>
+
+    <nav class="nav-overlay" id="nav-menu">
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#academic">Education</a>
+            <a href="#projects">Projects</a>
+            <a href="#archive">Archive</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <header id="home" class="section home-content">
+        <div class="profile-section">
+            <div class="profile-circle">
+                <img src="profile.jpg.jpeg" alt="Haram Najam Khan">
+            </div>
+        </div>
+
+        <h1 class="user-name">Haram Najam Khan</h1>
+        <p class="tagline">Innovative Computer Engineer</p>
+
+        <section class="intro-section">
+            <h2>About Me</h2>
+            <div class="intro-paragraphs">
+  <p>
+    I am a computer engineering student inspired by seeing women excel in technology and driven by a curiosity to understand how systems work. Growing up in Islamabad, Pakistan, I became fascinated with exploring devices, electronics projects, and building small systems, which motivated me to pursue a career in computing and emerging technologies.
+  </p>
+  <p>
+    Beyond academics, I have cultivated strong skills in communication, presentations, and leadership, enabling me to articulate complex ideas effectively and guide teams toward successful outcomes.
+  </p>
+  <p>
+    My academic focus lies in computer engineering, machine learning, and AI-driven optimization. I have contributed to a range of projects, including traffic signal optimization with CSP and simulated annealing, predictive healthcare systems for diabetes, heart disease, and cancer using neural networks, and multi-band GPS signal modeling and transmission via software-defined radio. These experiences have strengthened my analytical abilities and reinforced my belief in technology as a force for meaningful impact. Motivated by a desire to create value and drive innovation, I continue to explore interdisciplinary research, emerging technologies, and practical solutions that can advance knowledge and benefit society.
+  </p>
+</div>
+        </section>
+    </header>
+
+    <!-- Academic Section -->
+    <section id="academic" class="section academic-path">
+        <h2>Academic Path</h2>
+        <div class="academic-container">
+            <h3>Bachelor of Computer Engineering</h3>
+            <span class="date-gold">2022 — Current</span>
+            <div class="cgpa-badge">CGPA 3.48</div>
+            <p class="intro-text">
+                Currently in my eighth semester at COMSATS University Islamabad, Abbottabad Campus, I am a computer engineering student with a strong focus on the hardware-software co-design of intelligent systems. As Chairperson of IEEE at my campus, I actively engage in technology initiatives, workshops, and projects, building practical skills and fostering collaborations with peers and faculty.
+            </p>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <h2>Projects</h2>
+        <p class="section-intro">Diverse Projects Showcasing Creativity & Technology.</p>
+        <div class="grid-container">
+            <div class="portal-card" id="gps">
+                <div class="card-image"><img src="gps.webp" alt="FYP"></div>
+                <div class="card-info">
+                    <h3>MultiBand GPS Signal Modeling and Transmission Via Software Defined Radio</h3>
+                    <p class="tech-stack">Final Year Project</p>
+                    <a href="GPS_Project.html" class="btn-portal">Click Here To Know More</a>
+                </div>
+            </div>
+            <div class="portal-card" id="website">
+                <div class="card-image"><img src="website.webp" alt="SNN"></div>
+                <div class="card-info">
+                    <h3>Namaz Reminder Web Based App</h3>
+                    <p class="tech-stack">Html,Css,Java</p>
+                    <a href="website.html" class="btn-portal">Click Here To Know More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Archive Section -->
+    <section id="archive" class="section">
+        <h2>The Archive</h2>
+        <div class="grid-container archive-grid">
+            <div class="portal-card large" id="certificates">
+                <div class="card-image"><img src="mycertificates.webp.jpeg" alt="Credentials"></div>
+                <div class="card-info">
+                    <h3>Certificates</h3>
+                    <a href="codeforcertificates.html" class="btn-portal">Click Here To Know More</a>
+                </div>
+            </div>
+            <div class="portal-card">
+                <div class="card-image"><img src="uni_life.webp.jpeg" alt="University Life"></div>
+                <div class="card-info">
+                    <h3>University Life</h3>
+                    <p class="tech-stack">The Golden Chapter</p>
+                    <a href="uni_life.html" class="btn-portal">Relive the Memories</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="section footer">
+        <h2>The Resume</h2>
+        <a href="Haram CV.pdf" class="btn-portal download-btn">Download CV</a>
+        <div class="contact-links">
+            <h3>Contact Me</h3>
+            <p>engr.haramnajam16@gmail.com</p>
+            <a href="https://www.linkedin.com/in/haram-najam-805240308?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank">LinkedIn</a>
+        </div>
+    </footer>
+
+    <script>
+        // ===== Menu Toggle =====
+        const menuBtn = document.getElementById('menu-btn');
+        const navMenu = document.getElementById('nav-menu');
+        const navBg = document.querySelector('.nav-bar-bg');
+
+        menuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            navBg.style.opacity = navMenu.classList.contains('active') ? '1' : '0';
+            navBg.style.pointerEvents = navMenu.classList.contains('active') ? 'all' : 'none';
+        });
+
+        // Close menu when clicking outside
+        navBg.addEventListener('click', () => {
+            navMenu.classList.remove('active');
+            navBg.style.opacity = '0';
+            navBg.style.pointerEvents = 'none';
+        });
+
+        // Smooth Scroll for Nav Links
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = document.querySelector(link.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 50,
+                        behavior: 'smooth'
+                    });
+                }
+                navMenu.classList.remove('active');
+                navBg.style.opacity = '0';
+                navBg.style.pointerEvents = 'none';
+            });
+        });
+    </script>
+</body>
+</html>

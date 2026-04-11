@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Namaz Reminder Project Report | Haram Najam</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ===== Reset ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: #f5f0ff;
+            color: #2e0249;
+            overflow-x: hidden;
+        }
+
+        /* ===== Circular Background Patterns ===== */
+        body::before {
+            content: '';
+            position: fixed;
+            width: 600px;
+            height: 600px;
+            background: rgba(155, 89, 182, 0.15);
+            border-radius: 50%;
+            top: -150px;
+            left: -150px;
+            z-index: -1;
+        }
+        body::after {
+            content: '';
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            background: rgba(241, 196, 15, 0.15);
+            border-radius: 50%;
+            bottom: -100px;
+            right: -100px;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 30px 40px;
+            background: #fff;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border-radius: 15px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            color: #6a0dad;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        h2 {
+            border-bottom: 2px solid #6a0dad;
+            padding-bottom: 5px;
+            margin-top: 30px;
+        }
+
+        p {
+            line-height: 1.7;
+            margin: 15px 0;
+        }
+
+        ul {
+            margin: 15px 0 15px 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        .feature-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .feature-item {
+            flex: 1 1 45%;
+            background: #f5eaff;
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid #6a0dad;
+            color: #6a0dad;
+        }
+
+        .icon {
+            color: #f1c40f;
+            margin-right: 8px;
+        }
+
+        @media (max-width:768px) {
+            .feature-item {
+                flex: 1 1 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1><i class="fas fa-mosque icon"></i>Namaz Reminder Project Report</h1>
+
+        <h2>Project Overview</h2>
+        <p>
+            The "Namaz Reminder" is a web-based application designed to assist users in keeping track of their daily prayers. 
+            The system provides accurate prayer timings, Qaza prayer scheduling, Azkar (remembrance of Allah), and timely notifications.
+            The application is user-friendly, interactive, and ensures that users never miss their prayers.
+        </p>
+
+        <h2>Objective</h2>
+        <p>
+            The main objective of this project is to create a comprehensive tool that helps Muslims stay consistent with their daily and congregational prayers.
+            It aims to provide accurate prayer timings based on the user's location and assist in managing missed (Qaza) prayers efficiently.
+        </p>
+
+        <h2>Key Features</h2>
+        <div class="feature-list">
+            <div class="feature-item">
+                <h3><i class="fas fa-map-marker-alt icon"></i>Location Detection</h3>
+                <p>Automatic detection of user's city or manual input for accurate prayer times.</p>
+            </div>
+            <div class="feature-item">
+                <h3><i class="fas fa-clock icon"></i>Prayer Timings</h3>
+                <p>Displays all five daily prayers (Fajr, Dhuhr, Asr, Maghrib, Isha) and Jumma prayer with precise timings.</p>
+            </div>
+            <div class="feature-item">
+                <h3><i class="fas fa-bell icon"></i>Notifications</h3>
+                <p>Reminds users of upcoming prayers and missed prayers with daily notifications.</p>
+            </div>
+            <div class="feature-item">
+                <h3><i class="fas fa-pray icon"></i>Azkar & Dhikr Counter</h3>
+                <p>Provides daily morning, evening, after prayer, and general Azkar with a counter to track Dhikr repetitions.</p>
+            </div>
+            <div class="feature-item">
+                <h3><i class="fas fa-history icon"></i>Qaza Namaz Scheduler</h3>
+                <p>Helps users calculate and schedule missed prayers based on available completion days.</p>
+            </div>
+            <div class="feature-item">
+                <h3><i class="fas fa-calendar-check icon"></i>Dynamic Scheduling</h3>
+                <p>Automatically switches to the next prayer tab after setting location for smooth user experience.</p>
+            </div>
+        </div>
+
+        <h2>Technologies Used</h2>
+        <ul>
+            <li><strong>HTML5</strong> - Structure of the web application.</li>
+            <li><strong>CSS3</strong> - Styling, layout, responsive design.</li>
+            <li><strong>JavaScript</strong> - Functionality including location detection, prayer time calculation, Qaza scheduling, and notifications.</li>
+            <li><strong>Font Awesome</strong> - Icons for UI enhancement.</li>
+            <li><strong>Google Fonts</strong> - Poppins and Playfair Display fonts for a modern look.</li>
+        </ul>
+
+        <h2>Functionalities</h2>
+        <ul>
+            <li>Automatically detects the user's location or allows manual input for accurate prayer timings.</li>
+            <li>Displays prayer times and descriptions for each prayer including Fajr, Dhuhr, Asr, Maghrib, Isha, and Jumma.</li>
+            <li>Enables marking prayers as complete and tracks daily prayer stats.</li>
+            <li>Azkar section with category selection and Dhikr counter for spiritual tracking.</li>
+            <li>Qaza Namaz calculator for scheduling missed prayers and generating a daily plan.</li>
+            <li>Notifications for prayers and missed prayers, enhancing punctuality.</li>
+            <li>Live time display and countdown for the next prayer.</li>
+        </ul>
+
+        <h2>Conclusion</h2>
+        <p>
+            The Namaz Reminder project successfully integrates technology with spiritual practices, making it easier for users to manage and stay consistent with their prayers.
+            It is a practical tool for Muslims seeking to improve punctuality and consistency in their religious obligations while providing an interactive and modern interface.
+        </p>
+
+        <div class="footer">
+            &copy; 2026 Namaz Reminder. Developed by Haram Najam Khan. All rights reserved.
+        </div>
+    </div>
+</body>
+</html>
